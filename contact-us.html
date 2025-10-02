@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init({
+        publicKey: "kx0S0MVlBLS5w45Wr",
+      });
+    })();
+  </script>
+  <script type="text/javascript">
+    window.onload = function() {
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        emailjs.sendForm('service_v3ys3i9', 'template_v21wawn', this)
+          .then(() => {
+            console.log('SUCCESS!');
+            alert("Message sent successfully!");
+          }, (error) => {
+            console.log('FAILED...', error);
+            alert("Failed to send message. Try again.");
+          });
+      });
+    }
+  </script>
+</head>
+<body >
+  <header class="text-light fs-1 bg-secondary text-center p-3 mb-4">Contact Us</header>
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <form id="contact-form" class="p-4 bg-white shadow rounded">
+          <input type="hidden" name="time" value="Mar 10 2025 08:46">
+          
+          <div class="mb-3 form-floating">
+              <input type="text" name="from_name"  class="form-control " placeholder="Your Name" required>
+            <label class="form-label ">Name</label>
+          </div>
+          
+          <div class="mb-3 form-floating">
+              <input type="email" name="from_email" class="form-control" placeholder="your@email.com" required>
+            <label class="form-label">Email</label>
+          </div>
+          
+          <div class="mb-3 form-floating">
+              <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+            <label class="form-label">Subject</label>
+          </div>
+          
+          <div class="mb-3 form-floating">
+              <textarea name="message" class="form-control" rows="4" placeholder="Write your message here..." required></textarea>
+              <label class="form-label">Message</label>
+          </div>
+          
+          <div class="d-grid ">
+            <button type="submit" class="btn btn-primary ">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
